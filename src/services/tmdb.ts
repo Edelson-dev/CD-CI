@@ -1,16 +1,16 @@
-import { apiFetch } from './api'
+import { api } from './api'
 import type { Movie, MovieDetail, TMDBApiResponse } from '../types/movie'
 
 export function getPopularMovies(page = 1): Promise<TMDBApiResponse<Movie>> {
-  return apiFetch<TMDBApiResponse<Movie>>('/movie/popular', { page })
+  return api.get<TMDBApiResponse<Movie>>('/movie/popular', { page })
 }
 
 export function searchMovies(query: string, page = 1): Promise<TMDBApiResponse<Movie>> {
-  return apiFetch<TMDBApiResponse<Movie>>('/search/movie', { query, page })
+  return api.get<TMDBApiResponse<Movie>>('/search/movie', { query, page })
 }
 
 export function getMovieById(id: number): Promise<MovieDetail> {
-  return apiFetch<MovieDetail>(`/movie/${id}`)
+  return api.get<MovieDetail>(`/movie/${id}`)
 }
 
 export function getPosterUrl(path: string | null, size = 'w500'): string | null {
