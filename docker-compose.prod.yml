@@ -1,0 +1,12 @@
+version: "3.8"
+
+services:
+  movies-prod:
+    build:
+      context: .
+      dockerfile: .docker/Dockerfile.prod
+    ports:
+      - "80:80"
+    restart: always
+    env_file:
+      - .env.production
