@@ -1,0 +1,39 @@
+name: PR - Production - Lint & Test (vite)
+
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+    branches:
+      - "main"
+jobs:
+  lint-and-test:
+    name: Validar Codigo
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descargar el Codigo
+        uses: actions/checkout@v4
+
+      - name: Configurar node
+        uses: actions/setup-node@v4 
+        with: 
+          noe-version: 22
+          cache: 'npm'
+        
+      - name: Instalar Dependencias
+        run: npm i 
+
+      - name: Ejectuar Linter
+        run: npm run lint:deep
+
+      - name:  Compilar Typescript
+        run: npm run typecheck --if-present
+
+      - name: Ejecutar Test
+        run: npm test -- --watch=false --if-present
+      
+      - name: Build
+        run: npm run build

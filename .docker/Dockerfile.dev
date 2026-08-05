@@ -1,0 +1,13 @@
+FROM node:22-alpine AS setup 
+EXPOSE 3000
+
+FROM setup as build
+WORKDIR /app
+
+COPY package*.json ./
+RUN npm i
+
+COPY . .
+RUN npm run build 
+
+CMD [ "npm", "dev"]

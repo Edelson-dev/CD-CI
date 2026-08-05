@@ -3,6 +3,8 @@ build
 dist
 .git
 .gitignore
-Dockerfile
 .dockerignore
 npm-debug.log
+.docker
+.github
+
