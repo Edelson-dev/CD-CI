@@ -29,5 +29,5 @@ export default defineConfig([
     },
   },
 
-  oxlint.configs.recommended,
+  oxlint.configs['flat/recommended'],
 ])
